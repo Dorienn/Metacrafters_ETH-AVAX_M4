@@ -1,41 +1,20 @@
-# Project Title
+# DEGEN Tokens Project
 
-Simple overview of use/purpose.
+ETH + AVAX Proof: Intermediate Course Module 4 Project
 
 ## Description
 
-An in-depth paragraph about your project and overview of use.
+This project makes use of ERC20 and is deployed on the Avalanche network for Degen Gaming. It allows minting, transferring, checking balance, burning, and redeeming items using DGN tokens.
 
-## Getting Started
+## Functions
 
-### Installing
-
-* How/where to download your program
-* Any modifications needed to be made to files/folders
-
-### Executing program
-
-* How to run the program
-* Step-by-step bullets
-```
-code blocks for commands
-```
-
-## Help
-
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
-
-## Authors
-
-Contributors names and contact info
-
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
-
-
-## License
-
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
+### mint
+This function allows minting tokens (owner only).
+### getBalance
+This function returns the balance of tokens of the account.
+### transferTokens
+This function allows sending tokens to a given address.
+### burnTokens
+This function allows burning tokens.
+### redeemItem
+This function allows redeeming an item that costs 100 DGN.
