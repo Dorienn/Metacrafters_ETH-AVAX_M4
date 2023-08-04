@@ -4,6 +4,7 @@ pragma solidity ^0.8.18;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol"; 
 import "@openzeppelin/contracts/access/Ownable.sol"; 
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
+import "hardhat/console.sol";
 
 contract DegenToken is ERC20, ERC20Burnable, Ownable {
 
@@ -27,9 +28,30 @@ contract DegenToken is ERC20, ERC20Burnable, Ownable {
             burn(_value);
         }
 
-        function redeemItem() external {
-            uint256 redeemAmount = 100 * (10**decimals()); // Make tokens readable
-            require(balanceOf(msg.sender) >= redeemAmount, "You do not have enough DGN tokens to redeem this item!");
-            _burn(msg.sender, redeemAmount);
+        function redeemItem(string memory item) external {
+            uint256 redeemAmount;
+
+            if (compareStrings(item, "Shirt")) {
+                redeemAmount = 200;
+                require(balanceOf(msg.sender) >= redeemAmount, "You do not have enough DGN tokens to redeem this item!");
+                console.log("Thank you for redeeming a shirt! Enjoy!");
+            } else if (compareStrings(item, "Badge")) {
+                redeemAmount = 100; 
+                require(balanceOf(msg.sender) >= redeemAmount, "You do not have enough DGN tokens to redeem this item!");
+                console.log("Thank you for redeeming a badge! Enjoy!");
+            } else if (compareStrings(item, "Mug")) {
+                redeemAmount = 50;
+                require(balanceOf(msg.sender) >= redeemAmount, "You do not have enough DGN tokens to redeem this item!");
+                console.log("Thank you for redeeming a mug! Enjoy!");
+            } else {
+                revert("Invalid item type!");
+            }
+
+            _burn(msg.sender, redeemAmount);            
+        }
+
+        // Compare two strings
+        function compareStrings(string memory a, string memory b) internal pure returns (bool) {
+            return (keccak256(abi.encodePacked((a))) == keccak256(abi.encodePacked((b))));
         }
 }
