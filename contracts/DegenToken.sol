@@ -20,6 +20,7 @@ contract DegenToken is ERC20, ERC20Burnable, Ownable {
 
         function transferTokens(address _receiver, uint256 _value) external {
             require(balanceOf(msg.sender) >= _value, "You do not have enough DGN tokens!");
+            approve(msg.sender, _value);
             transferFrom(msg.sender, _receiver, _value);
         }
 
